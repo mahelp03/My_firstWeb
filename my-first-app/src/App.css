@@ -1,0 +1,223 @@
+.app-container {
+  width: 100%; 
+  max-width: 1280px;
+  margin: 0 auto;
+  
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* 상단 네비 바 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid #eee;
+  font-family: sans-serif;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.logo .highlight {
+  color: orange;
+}
+
+.category-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 검색창 */
+.search-bar {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  border: 1px solid #f07a2b;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  outline: none;
+}
+
+.search-btn {
+  background: white;
+  border: none;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* 오른쪽 메뉴 */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+}
+
+/* 하단 카테고리 메뉴 */
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+/* 상단 최대 배너 변환 */
+.carousel { 
+  position: relative; 
+  width: 100%;
+  height: 450px;
+  margin: 20px auto;
+}
+
+.carousel img {
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+  margin: 20px auto;
+}
+
+/* 화살표 버튼 공통 스타일 */
+.left-arrow, .right-arrow {
+  position: absolute; /* 부모(.carousel)를 기준으로 위치를 잡음 */
+  top: 50%; /* 세로 중앙 */
+  transform: translateY(-50%); /* 세로 중앙 정렬을 위한 미세 조정 */
+  background-color: rgba(0, 0, 0, 0.4); /* 반투명 검은색 배경 */
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10; /* 이미지가 버튼을 가리지 않도록 설정 */
+}
+
+.left-arrow {
+  top: 200px;
+
+  left: 20px; /* 왼쪽에서 20px 떨어짐 */
+}
+
+.right-arrow {
+  top: 200px;
+  right: 20px; /* 오른쪽에서 20px 떨어짐 */
+}
+
+.top-feed {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+/* 상단 배너 개별 박스 */
+.top-item {
+  position: relative;
+  flex: 1;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+/* 상단 이미지 크기 조절 */
+.top-item img {
+  width: 100%;
+  height: 180px;          /* 🔹 높이 조절 (원하는 값으로 변경 가능: 160~220px 추천) */
+  object-fit: cover;      /* 비율 유지하면서 꽉 차게 */
+  transition: transform 0.3s ease;
+}
+
+.top-item:hover img {
+  transform: scale(1.03); /* 살짝 확대 효과 */
+}
+
+/* 상단 이미지 위에 제목 표시 */
+.top-title {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  color: white;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* -------------------- 인기글 리스트 -------------------- */
+.popular-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 0px;
+}
+
+/* 각 글 카드 */
+.article {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 8px;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* 썸네일 크기 */
+.article img {
+  width: 100px;         /* 🔹 가로 크기 조절 */
+  height: 70px;         /* 🔹 세로 크기 조절 */
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* 텍스트 영역 */
+.article-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.article-title {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.article-title .comment {
+  color: #d33;
+  font-weight: 600;
+}
+
+.article-meta {
+  font-size: 13px;
+  color: #777;
+  margin-top: 2px;
+}
