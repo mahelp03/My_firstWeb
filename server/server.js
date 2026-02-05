@@ -23,6 +23,17 @@ db.connect((err) => {
   else console.log("✅ AWS RDS 연결 성공!");
 });
 
+db.connect((err) => {
+  if (err) return console.error(err);
+  console.log("✅ 서버 접속 성공!");
+
+  // 방이 없으면 만드는 쿼리 실행
+  db.query("CREATE DATABASE IF NOT EXISTS myfirstwebdb", (err) => {
+    if (err) console.log(err);
+    else console.log("✨ myfirstwebdb 방 생성 완료!");
+  });
+});
+
 // ✅ 2. GET - DB에서 게시글 조회
 app.get("/api/posts", (req, res) => {
   const sql = "SELECT * FROM posts"; // DB에서 모든 글 가져오는 명령어
@@ -32,14 +43,13 @@ app.get("/api/posts", (req, res) => {
   });
 });
 
-// ✅ 3. POST - DB에 새 게시글 추가
 app.post("/api/posts", (req, res) => {
-  const { title, content, user_id } = req.body; // 제목과 내용을 받음
-  const sql = "INSERT INTO posts (title, content, user_id) VALUES (?, ?, ?)";
+  const { title, author_name, tags, content, image_url } = req.body;
+  const sql = "INSERT INTO posts (title, author_name, tags, content, image_url) VALUES (?, ?, ?, ?, ?)";
   
-  db.query(sql, [title, content, user_id || 1], (err, result) => {
+  db.query(sql, [title, author_name, tags, content, image_url], (err, result) => {
     if (err) return res.status(500).json(err);
-    res.status(201).json({ id: result.insertId, title, content });
+    res.status(201).json({ id: result.insertId, message: "게시글이 저장되었습니다!" });
   });
 });
 
