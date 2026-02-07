@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import mysql from "mysql2"; // ✅ 설치한 mysql2 라이브러리 불러오기
-import dotenv from "dotenv"; // ✅ .env 파일 읽기용
+import mysql from "mysql2"; 
+import dotenv from "dotenv";
 
-dotenv.config(); // .env 설정 로드
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -19,7 +19,9 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-  if (err) console.error("❌ DB 연결 실패:", err.message);
+  if(err){
+    console.error("❌ DB 연결 실패:", err.message);
+  }
   else console.log("✅ AWS RDS 연결 성공!");
 });
 
@@ -27,16 +29,15 @@ db.connect((err) => {
   if (err) return console.error(err);
   console.log("✅ 서버 접속 성공!");
 
-  // 방이 없으면 만드는 쿼리 실행
   db.query("CREATE DATABASE IF NOT EXISTS myfirstwebdb", (err) => {
     if (err) console.log(err);
     else console.log("✨ myfirstwebdb 방 생성 완료!");
   });
 });
 
-// ✅ 2. GET - DB에서 게시글 조회
 app.get("/api/posts", (req, res) => {
-  const sql = "SELECT * FROM posts"; // DB에서 모든 글 가져오는 명령어
+  const sql = "SELECT id, title FROM posts ORDER BY created_at DESC";
+  
   db.query(sql, (err, results) => {
     if (err) return res.status(500).json(err);
     res.json(results);

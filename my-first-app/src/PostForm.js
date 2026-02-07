@@ -20,7 +20,7 @@ function PostForm({ onAdd }) {
       return alert("제목과 작성자 이름을 입력하세요!");
     }
 
-    // ✅ 서버에 모든 데이터 전송
+    //서버에 모든 데이터 전송
     fetch("http://localhost:5000/api/posts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -32,7 +32,7 @@ function PostForm({ onAdd }) {
       })
       .then((newPost) => {
         onAdd(newPost); // 부모 컴포넌트의 목록 업데이트
-        // ✅ 입력창 초기화
+        //입력창 초기화
         setFormData({ title: "", author_name: "", content: "", tags: "" });
         alert("게시글이 등록되었습니다!");
       })

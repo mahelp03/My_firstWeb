@@ -1,32 +1,39 @@
 
 import "../App.css";
 import React, { useEffect, useState } from "react";
-import PopularList from "../PopularList"; // ✅ 한 단계 위
-import PostForm from "../PostForm";       // ✅ 한 단계 위
-import { Link } from "react-router-dom";
+import PopularList from "../PopularList";
+import PostForm from "../PostForm";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate(); 
+
   return (
     <div className="navbar">
-      {/* 왼쪽: 로고 + 전체 카테고리 */}
       <div className="nav-left">
-        <div className="logo">Idea<span className="highlight">Hub</span></div>
+        <div 
+          className="logo" 
+          onClick={() => navigate("/")} 
+          style={{ cursor: "pointer" }}
+        >
+          Idea<span className="highlight">Hub</span>
+        </div>
         <button className="category-btn">☰ Category</button>
       </div>
 
       {/* 검색창 */}
       <div className="search-bar">
-        <input type="text" placeholder="" />
+        <input type="text" placeholder="검색어를 입력하세요..." />
         <button className="search-btn">🔍</button>
       </div>
 
-      {/* 아이콘3 */}
+      {/* 오른쪽 영역 */}
       <div className="nav-right">
-        <span> </span>
         <button className="category-btn">🎃 Holloween</button>
         <button className="category-btn">♡ Favorite</button>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign in</Link>
+        {/* 기존 Link 태그 유지 */}
+        <Link to="/login" className="nav-link">Login</Link>
+        <Link to="/signup" className="nav-link">Sign in</Link>
       </div>
     </div>
   );
